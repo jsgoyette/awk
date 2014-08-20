@@ -1,0 +1,43 @@
+BEGIN {
+  # FS="[ ]*,[ ]*";
+  q="\x27";
+  FPAT = "([^,]+)|(\"[^\"]+\")"
+}
+
+NR == 1 {
+  split($0, fields, /[ ]*,[ ]*/)
+}
+
+NR > 1 && NF {
+
+  s = "INSERT INTO Testing ("
+
+  for (i=1; i<=length(fields); i++) {
+    s = s q fields[i] q
+    if (i != length(fields)) {
+      s = s ", "
+    }
+  };
+
+  s = s ") VALUES (";
+
+  for (i=1; i<=length(fields); i++) {
+
+    if ($(i) ~ //)
+    if ($(i) == "")
+      s = s "null"
+    else {
+      val = $(i)
+      gsub(/'/, "\\'", val)
+      s = s q val q
+    }
+
+    if (i != length(fields)) {
+      s = s ", "
+    }
+  }
+
+  s = s ");"
+
+  print s
+}
