@@ -26,7 +26,7 @@ BEGIN {
   for (i=1; i <= length(fields); i++) {
     gsub(/^"|"$/, "", fields[i])
     gsub(/\\"/, "\"", fields[i])
-    gsub("\t", " ", fields[i])
+    gsub("\t", "\\t", fields[i])
     s = !s ? fields[i] : s "\t" fields[i]
   }
 
