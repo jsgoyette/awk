@@ -1,0 +1,28 @@
+BEGIN {
+    ORS=""
+    s = ""
+}
+
+!/^[ \t]*$/ && !/^[ \t]*#/ {
+
+    if ($0 !~ /[{}\(;] *$/ && $0 !~ /(if|for|while) *\(.*\) *$/)
+    {
+        $NF = $NF ";"
+    }
+
+
+    for (i=1; i <= NF; i++) {
+        $(i) = $(i)
+    }
+
+    s = s $0;
+}
+
+END {
+    gsub(/;\s*}/, "}", s)
+    gsub(/\s*{/, "{", s)
+
+    # this is a comment
+
+    print s
+}

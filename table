@@ -28,6 +28,7 @@ END {
 
 function max(x, y) { return (x > y) ? x : y }
 
-function numjust(n, s) {   # position s in field n
+function numjust(n, s) {   
+    # position s in field n
     return s substr(blanks, 1, int((wid[n]-nwid[n])/2))
 }
