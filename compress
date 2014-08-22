@@ -19,8 +19,10 @@ BEGIN {
 }
 
 END {
-    gsub(/;\s*}/, "}", s)
-    gsub(/\s*{/, "{", s)
+    gsub(/\t/, " ", s)
+    gsub(/; *}/, "}", s)
+    gsub(/ *{/, "{", s)
+    gsub(/ *:/, ":", s)
 
     # this is a comment
 
