@@ -23,11 +23,11 @@ NR > 1 && NF {
 
   for (i=1; i<=length(fields); i++) {
 
-    if ($(i) ~ //)
-    if ($(i) == "")
+    if ($i ~ //)
+    if ($i == "")
       s = s "null"
     else {
-      val = $(i)
+      val = $i
       gsub(/'/, "\\'", val)
       s = s q val q
     }

@@ -5,8 +5,8 @@ BEGIN {
 NR == 1 {
 
     for (i=1; i <= NF; i++) {
-        $(i) = $(i)
-        columns[i] = $(i)
+        $i = $i
+        columns[i] = $i
     }
 
 }
@@ -14,10 +14,10 @@ NR == 1 {
 NR > 1 && NF && ($0 !~ /^#/) {
 
     for (i=1; i <= NF; i++) {
-        $(i) = $(i)
+        $i = $i
         line = NR-1
         # print $(i)
-        dat[line,i] = $(i)
+        dat[line, i] = $i
     }
 
 }

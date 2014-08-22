@@ -12,7 +12,7 @@ BEGIN {
 
 
     for (i=1; i <= NF; i++) {
-        $(i) = $(i)
+        $i = $i
     }
 
     s = s $0;

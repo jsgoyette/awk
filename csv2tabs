@@ -3,9 +3,12 @@ BEGIN {
 }
 
 !/^\s*$/ && !/^#/ {
+
   c = 1
   s = ""
+
   for (i=1; i<=NF; i++) {
+
     if (s) {
       if ($i ~ "\"$") {fields[c] = s","$i; c++; s=""}
       else s = s","$i
